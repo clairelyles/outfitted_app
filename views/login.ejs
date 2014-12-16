@@ -1,0 +1,24 @@
+<% include partials/header %>
+
+  	<div class='row'>
+  		<div class='col-md-4'></div>
+  		<div class='col-md-4'>
+			<div class='text-center'>
+			<% include partials/alerts %>
+				<h1>Log-in:</h1>
+				<hr>
+				<form class='form' method='post' action='/login' enctype='multipart/form-data'>
+					<input type='text' class='form-control' placeholder='Enter your email' name='email'>
+					<br />
+					<input type='text' class='form-control' placeholder='Enter your password' name='password'>
+					<br />
+					<input type='submit' value='Log in' class='btn btn-primary'>
+				</form>
+			</div>
+  		</div>
+  		<div class='col-md-3'></div>
+  	</div>
+  </div>
+</div>
+
+<% include partials/footer %>

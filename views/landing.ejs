@@ -1,0 +1,44 @@
+<% include partials/header %>
+      <!-- Example row of columns -->
+      <div class='row'>
+        <div class='col-md-2'>
+          <!-- <img class='main_img' src='../leopard_bg.jpg'> -->
+        </div>
+        <div class='col-md-8'>
+		        <h2 class='post-title'>Welcome _____.</h2>
+		       
+		        <% var convertF = ((temp.temp - 273.15) * 1.8000) + 32 %>
+		        <% var lowerCaseDesc = description.main.toLowerCase() %>
+		        <h3>The weather in Seattle is: <%= Math.floor(convertF)+'°' %> and <%= lowerCaseDesc %>.</h3>
+        	<br />
+         	<br />
+		      	<p>Testing "Favorite" div pop-up:
+		      	<div class='favorite text-center'>
+		       		<h1>Favorite!</h1>
+		      	</div>
+	      	<br />
+		  	<br />
+			  	<!-- <p>Testing "Whatever" div pop-up:
+			  	<div class='favorite text-center'>
+			   		<h1>Whatever!</h1>
+			  	</div>
+		      	<br />
+			  	<br />
+			  	<p>Testing "As If" div pop-up:
+			  	<div class='favorite text-center'>
+			   		<h1>As If!</h1>
+			  	</div>
+		      	<br />
+			  	<br />
+			  	<p>Testing "Mis-Match" div pop-up:
+			  	<div class='favorite text-center'>
+			   		<h1>Mis-Match!</h1>
+			  	</div> -->
+	     	</div>
+	        <div class='col-md-2'>
+	          <!-- <img class='main_img' src='../leopard_bg.jpg'> -->
+	        </div>
+        </div>
+      </div>
+
+<% include partials/footer %>

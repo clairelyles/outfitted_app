@@ -1,0 +1,188 @@
+var express = require('express');
+var session = require('express-session');
+var request = require('request');
+var bcrypt = require('bcrypt');
+var flash = require('connect-flash');
+var app = express();
+var db = require('./models');
+var multer = require('multer');
+var cloudinary = require('cloudinary');
+
+app.set('view engine', 'ejs');
+
+app.use(express.static(__dirname + '/public'));
+app.use(multer({dest: __dirname+'/uploads'}));
+app.use(session ({
+	secret: 'lolCats',
+	resave: false,
+	saveUninitialized: true
+}));
+app.use(flash());
+app.use(function(req, res, next){
+    req.getUser = function(){
+        return req.session.user || false;
+    }
+    next();
+})
+
+
+/* ---------- Applies flash msg to every * page ---------- */
+app.get('*', function(req, res, next) {
+	var alerts = req.flash();
+	res.locals.alerts = alerts;
+	next();
+})
+
+
+/* ------------------- Index Page ------------------- */
+app.get('/', function(req, res) {
+	var user = req.getUser();
+	// user is boolean, displaying undefined*
+	res.render('index');
+})
+
+
+/* ------------------- Signup Page ------------------- */
+app.get('/signup', function(req, res) {
+	res.render('signup');
+})
+
+app.post('/signup', function(req, res) {
+	db.user.findOrCreate({
+		where:{
+			'email':req.body.email
+		},
+		defaults:{
+			'email':req.body.email,
+			'password':req.body.password,
+			'first_name':req.body.first_name
+		}
+	}).spread(function(userInfo, created) {
+			// res.send(userInfo)
+			res.redirect('/landing');
+	}).catch(function(error) {
+		if (error && Array.isArray(error.errors)) {
+			// must be error.errors b/c the error obj contains name and message keys in addition to errors
+			// res.send({error:error})
+			error.errors.forEach(function(errorItem) {
+				// if error, display error message
+				req.flash('danger', errorItem.message)
+			});
+		} else {
+			// for unknown errors
+			res.flash('danger', 'Unknown error');
+		}
+		res.redirect('signup');
+	});
+});
+
+
+/* ------------------- Login Page ------------------- */
+app.get('/login', function(req, res) {
+	res.render('login');
+})
+
+app.post('/login', function(req, res) {
+	// res.render('login');
+	db.user.find({where: {'email':req.body.email}}).then(function(userObj) {
+		if (userObj) {
+			bcrypt.compare(req.body.password, userObj.password, function(err, match) {
+			if (match === true) {
+				req.session.user = {
+					id: userObj.id,
+					email: userObj.email,
+					name: userObj.first_name
+				};
+				res.redirect('/landing');
+			} else {
+				req.flash('warning', 'Invalid password, please try again.');
+			}
+		})
+	} else {
+		req.session.count ? req.session.count = req.session.count +1 : req.session.count = 1;
+		if (req.session.count > 2) {
+			req.flash('warning', 'Too many incorrect log-in attempts. Please create an account')
+			res.redirect('/signup');
+		} else {
+			req.flash('warning', 'Unknown User, please try again.')
+			res.redirect('/login');
+			}
+		}		
+	});
+});
+
+
+/* ------------------- Logout Page ------------------- */
+app.get('/logout', function(req, res) {
+	res.redirect('/');
+})
+
+/* ------------------- Landing Page ------------------- */
+app.get('/landing', function(req, res) {
+	var user = req.session.user.id;
+	console.log(user);
+	db.user.find({where:{'id':user}}).then(function(userInfo) {
+		res.send('landing', userInfo)
+	})
+
+	// var city = 'London,uk'
+	// request('http://api.openweathermap.org/data/2.5/weather?q=' + city, function(error, response, body){
+	// 	var city = JSON.parse(body);
+	// 	var cityTemp = city.main;
+	// 	var cityDesc = city.weather;
+	// 	for (i = 0; i < cityDesc.length; i++) {
+	// 		var description = cityDesc[i]
+	// 		//res.send({'temp':cityTemp,'description':description});
+	// 		res.render('landing', {'temp':cityTemp,'description':description})
+	// 	}
+	// })
+})
+
+/* ------------------- Get Upload Page ------------------- */
+app.get('/upload', function(req, res) {
+	//var userId = req.params.id;
+	console.log("THE USER ID: "+req.session.user.id)
+	db.piecetype.findAll().then(function(piecetype) {
+	// res.send({piecetype:piecetype});
+	res.render('upload', {piecetype:piecetype});
+	})
+})
+
+/* ------------------- Post Upload Page ------------------- */
+app.post('/upload', function(req, res) {
+	// var imgInfo = req.files.piecePicture.path
+	// console.log(req.files.piecePicture)
+
+	if (req.files.piecePicture) {
+		var user = req.session.user.id;
+		db.piece.create({where:{'userId':user}}).then(function(piece) {
+			var imgInfo = req.files.piecePicture.path
+			cloudinary.uploader.upload(imgInfo, function(result) {
+				res.send({result:result, piece:piece});
+				},{'public_id':'piece_'+piece.id})
+		})
+	} else {
+		req.flash('warning', 'Oops! No image found. Please upload a valid image.')
+		res.redirect('upload');
+	}
+});
+
+
+/* ------------------- Show picture Page ------------------- */
+app.get('/showPicture', function(req, res) {
+	res.render('show')
+})
+
+
+/* ------------------- Logout ------------------- */
+app.get('/logout', function(req, res) {
+	delete req.session.user;
+	req.flash('info', 'you have been logged out.')
+	res.redirect('/');
+})
+
+
+
+
+
+app.listen(3000);

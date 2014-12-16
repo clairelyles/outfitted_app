@@ -1,0 +1,19 @@
+<% include partials/header %>
+
+<% include partials/alerts %>
+<form action='/upload' method='post' enctype='multipart/form-data'>
+	<h3>What would you like to name the item?</h3>
+	<input type='text' name='title' placeholder='Enter image title'>
+	<br><br>
+	<input type='file' name='piecePicture'>
+	<h3>What kind of item is it?</h3>
+	<select>
+		<% for (i = 0; i < piecetype.length; i++) { %>
+			<option value="<%= piecetype[i].type %>"><%= piecetype[i].type %></option>
+		<% } %>
+	</select>
+	<br><br>
+	<input type='submit' class='btn btn-primary btn-lg'>
+</form>
+
+<% include partials/footer %>
