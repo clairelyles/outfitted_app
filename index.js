@@ -113,11 +113,6 @@ app.post('/login', function(req, res) {
 });
 
 
-/* ------------------- Logout Page ------------------- */
-app.get('/logout', function(req, res) {
-	res.redirect('/');
-})
-
 /* ------------------- Landing Page ------------------- */
 app.get('/landing', function(req, res) {
 	var user = req.getUser();
@@ -128,7 +123,7 @@ app.get('/landing', function(req, res) {
 				var city = JSON.parse(body);
 				var cityTemp = city.main;
 				var cityDesc = city.weather;
-				for (i = 0; i < cityDesc.length; i++) {
+				for (var i = 0; i < cityDesc.length; i++) {
 					var description = cityDesc[i]
 					// res.send({'temp':cityTemp,'description':description,'userInfo':userInfo});
 					res.render('landing', {'temp':cityTemp,'description':description,'userInfo':userInfo});
@@ -183,34 +178,58 @@ app.post('/upload', function(req, res) {
 /* ------------------- My Closet Page ------------------- */
 app.get('/mycloset', function(req, res) {
 	var user = req.getUser();
+	var top = [1,2];
+	var bottom = [3,4,5];
+
 	if (user) {
-		db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay) {
-			// res.send({pieceDisplay:pieceDisplay});
-			var imgId = pieceDisplay.map(function(pieceId) {
-				return (cloudinary.url('piece_' + pieceId.id + '.jpg',{
-					width: 0.5,
-					height: 0.5,
-					radius: 5,
-					crop: 'fill'
-				}));
+		db.tag.findAll().then(function(tags){
+			db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay){
+				var allPieces = pieceDisplay.map(function(piece){
+					var outPiece = {};
+					outPiece.id = piece.id;
+					outPiece.userId = piece.userId;
+					outPiece.piecetypeId = piece.piecetypeId;
+					outPiece.image = (cloudinary.url('piece_' + piece.id + '.jpg',{
+						width: 0.5,
+						height: 0.5,
+						radius: 5,
+						crop: 'fill'
+					}));
+					return outPiece;
+				});
+
+				var topPieces = allPieces.filter(function(piece){
+					return top.indexOf(piece.piecetypeId) > -1;
+				})
+				var bottomPieces = allPieces.filter(function(piece){
+					return bottom.indexOf(piece.piecetypeId) > -1;
+				})
+
+				res.render('mycloset', {'topPieces':topPieces,'bottomPieces':bottomPieces,'tags':tags});
 			});
-			res.render('mycloset', {'imgId':imgId,'pieceDisplay':pieceDisplay});
 		});
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
 		res.redirect('login');
-	}
+	};
 });
+
+/* ------------------- My Outfits Page ------------------- */
+app.get('/outfits', function(req, res) {
+	res.render('outfits');
+})
+
+app.post('outfits', function(req, res){
+	res.send(req.body);
+})
 
 
 /* ------------------- Logout ------------------- */
 app.get('/logout', function(req, res) {
 	delete req.session.user;
-	req.flash('info', 'you have been logged out.')
+	req.flash('info', 'you have been logged out.');
 	res.redirect('/');
 })
-
-
 
 
 

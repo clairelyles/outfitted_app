@@ -37,14 +37,52 @@ div {
 	border: 8px solid #000000;
 }
 
+/* ------------ My Closet ------------ */
+
+.carousel {
+	width: 500px;
+	height: 230px;
+	margin: 0 auto;
+}
+
+.carousel-control:hover, .carousel-control:focus {
+	color: #FF0090;
+}
+
+.carousel .item img {
+	margin: 0 auto;
+	padding-top: 25px;
+}
+
+.carousel-control {
+	color: #000000;
+	opacity: 100;
+	text-shadow: none;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+}
+
 .favorite {
 	background: #FF0090;
 	border: 5px solid #000000;
 	color: #000000;
-	padding: 15px;
-	padding-bottom: 30px;
-	width: 30vw;
-	height: 20vh;
+	width: 13vw;
+	height: 10vh;
+	padding-bottom: 40px;
+}
+
+.favorite-space{
+	margin-top: 140px;
+}
+
+
+/* ------------ Basic? ------------ */
+
+
+.footer {
+	margin-top: 100px;
 }
 
 body {
@@ -109,17 +147,6 @@ fieldset[disabled] .btn-primary.active {
 .btn-primary .badge { 
   color: #FFFFFF; 
   background-color: #000000; 
-}
-
-.carousel {
-	width: 600px;
-	height: 230px;
-	margin: 0 auto;
-}
-
-.carousel .item img {
-	margin: 0 auto;
-	padding-top: 40px;
 }
 
 

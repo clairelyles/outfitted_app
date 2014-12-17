@@ -1,10 +1,10 @@
 <% include partials/header %>
 
+<h1>Upload</h1>
 <% include partials/alerts %>
 <form action='/upload' method='post' enctype='multipart/form-data'>
-	<h3>What would you like to name the item?</h3>
-	<input type='text' name='title' placeholder='Enter image title'>
-	<br><br>
+<br />
+<br />
 	<input type='file' name='piecePicture'>
 	<h3>What kind of item is it?</h3>
 	<select class='selectpicker' data-style='btn-info' name='selectpicker'>
