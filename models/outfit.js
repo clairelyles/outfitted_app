@@ -7,8 +7,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        models.outfit.hasMany(models.piece)
-        models.outfit.belongsTo(models.piece)
+        // models.outfit.hasMany(models.piece)
+        // models.outfit.belongsTo(models.piece)
         models.outfit.belongsTo(models.tag)
       }
     }

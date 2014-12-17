@@ -5,11 +5,11 @@
           <!-- <img class='main_img' src='../leopard_bg.jpg'> -->
         </div>
         <div class='col-md-8'>
-		        <h2 class='post-title'>Welcome _____.</h2>
+		        <h2 class='post-title'>Welcome <%= userInfo.first_name %>.</h2>
 		       
 		        <% var convertF = ((temp.temp - 273.15) * 1.8000) + 32 %>
 		        <% var lowerCaseDesc = description.main.toLowerCase() %>
-		        <h3>The weather in Seattle is: <%= Math.floor(convertF)+'°' %> and <%= lowerCaseDesc %>.</h3>
+		        <h3>The weather in Seattle is: <%= Math.floor(convertF)+'°' %> with <%= lowerCaseDesc %>.</h3>
         	<br />
          	<br />
 		      	<p>Testing "Favorite" div pop-up:

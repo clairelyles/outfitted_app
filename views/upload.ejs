@@ -7,10 +7,12 @@
 	<br><br>
 	<input type='file' name='piecePicture'>
 	<h3>What kind of item is it?</h3>
-	<select>
+	<select class='selectpicker' data-style='btn-info' name='selectpicker'>
+		<optgroup label="Select Piece">
 		<% for (i = 0; i < piecetype.length; i++) { %>
-			<option value="<%= piecetype[i].type %>"><%= piecetype[i].type %></option>
+			<option value="<%= piecetype[i].id %>"><%= piecetype[i].type %></option>
 		<% } %>
+		</optgroup>
 	</select>
 	<br><br>
 	<input type='submit' class='btn btn-primary btn-lg'>

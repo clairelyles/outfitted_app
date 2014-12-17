@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         models.piece.belongsTo(models.user)
         models.piece.belongsTo(models.piecetype)
-        models.piece.belongsTo(models.outfit)
-        models.piece.hasMany(models.outfit)
+        // models.piece.belongsTo(models.outfit)
+        // models.piece.hasMany(models.outfit)
       }
     }
   });

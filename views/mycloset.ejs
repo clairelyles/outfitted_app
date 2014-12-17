@@ -1,0 +1,55 @@
+<% include partials/header %>
+
+<h1>My Closet</h1>
+<!-- Begin carousel -->
+<div class='container'>
+	<div id="piece-carousel" class="carousel slide" data-ride="carousel">
+	  <ol class="carousel-indicators">
+	    <li data-target="#piece-carousel" data-slide-to="0" class="active"></li>
+	    <li data-target="#piece-carousel" data-slide-to="1"></li>
+	    <li data-target="#piece-carousel" data-slide-to="2"></li>
+	  </ol>
+
+	  <div class="carousel-inner">
+	    <div class="item active">
+	      	<img src="http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%=pieceDisplay[0].id %>" alt="...">
+	    </div>
+	    <% for (i = 1; i < pieceDisplay.length; i++) { %>
+	    	<% if (pieceDisplay[i].piecetypeId === 1 || pieceDisplay[i].piecetypeId === 2 ) { %>
+	    <div class="item">
+	      <img src="http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%=pieceDisplay[i].id %>" alt="...">
+	    </div>
+	      	<% } %>
+	    <% } %>
+	  </div>
+	  <a class="left carousel-control" href="#piece-carousel" role="button" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	  </a>
+	  <a class="right carousel-control" href="#piece-carousel" role="button" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right"></span>
+	  </a>
+	</div> 
+</div>
+<!-- End Carousel -->
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-6' id='tops'>
+			<% for (i = 0; i < pieceDisplay.length; i++) { %>
+				<% if (pieceDisplay[i].piecetypeId === 1 || pieceDisplay[i].piecetypeId === 2 ) { %>
+					<img src="http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= pieceDisplay[i].id %>.jpg">
+				<% } %>
+			<% } %>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-6' id='bottoms'>
+			<% for (i = 0; i < pieceDisplay.length; i++) { %>
+				<% if (pieceDisplay[i].piecetypeId === 3 || pieceDisplay[i].piecetypeId === 4 || pieceDisplay[i].piecetypeId === 5 ) { %>
+						<img src="http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= pieceDisplay[i].id %>.jpg">
+					<% } %>
+			<% } %>
+		</div>
+	</div>
+</div>
+
+<% include partials/footer %>

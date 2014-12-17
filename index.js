@@ -36,7 +36,7 @@ app.get('*', function(req, res, next) {
 
 /* ------------------- Index Page ------------------- */
 app.get('/', function(req, res) {
-	var user = req.getUser();
+	// var user = req.getUser();
 	// user is boolean, displaying undefined*
 	res.render('index');
 })
@@ -96,6 +96,7 @@ app.post('/login', function(req, res) {
 				res.redirect('/landing');
 			} else {
 				req.flash('warning', 'Invalid password, please try again.');
+				res.redirect('/login');
 			}
 		})
 	} else {
@@ -119,47 +120,58 @@ app.get('/logout', function(req, res) {
 
 /* ------------------- Landing Page ------------------- */
 app.get('/landing', function(req, res) {
-	var user = req.session.user.id;
-	console.log(user);
-	db.user.find({where:{'id':user}}).then(function(userInfo) {
-		res.send('landing', userInfo)
-	})
-
-	// var city = 'London,uk'
-	// request('http://api.openweathermap.org/data/2.5/weather?q=' + city, function(error, response, body){
-	// 	var city = JSON.parse(body);
-	// 	var cityTemp = city.main;
-	// 	var cityDesc = city.weather;
-	// 	for (i = 0; i < cityDesc.length; i++) {
-	// 		var description = cityDesc[i]
-	// 		//res.send({'temp':cityTemp,'description':description});
-	// 		res.render('landing', {'temp':cityTemp,'description':description})
-	// 	}
-	// })
-})
+	var user = req.getUser();
+	if (user) {
+		db.user.find({where:{'id':user.id}}).then(function(userInfo) {
+			var city = 'Seattle,usa'
+			request('http://api.openweathermap.org/data/2.5/weather?q=' + city, function(error, response, body){
+				var city = JSON.parse(body);
+				var cityTemp = city.main;
+				var cityDesc = city.weather;
+				for (i = 0; i < cityDesc.length; i++) {
+					var description = cityDesc[i]
+					// res.send({'temp':cityTemp,'description':description,'userInfo':userInfo});
+					res.render('landing', {'temp':cityTemp,'description':description,'userInfo':userInfo});
+				};
+			});
+		});
+	} else {
+		req.flash('warning', 'Please log-in before continuing.');
+		res.redirect('login');
+	};
+});
 
 /* ------------------- Get Upload Page ------------------- */
 app.get('/upload', function(req, res) {
-	//var userId = req.params.id;
-	console.log("THE USER ID: "+req.session.user.id)
-	db.piecetype.findAll().then(function(piecetype) {
-	// res.send({piecetype:piecetype});
-	res.render('upload', {piecetype:piecetype});
-	})
+	var user = req.getUser();
+	if (user) {
+		// console.log("THE USER ID: "+req.session.user.id)
+		db.piecetype.findAll().then(function(piecetype) {
+		// res.send({piecetype:piecetype});
+		res.render('upload', {piecetype:piecetype});
+		})
+	} else {
+		req.flash('warning', 'Please log-in before continuing.');
+		res.redirect('login');
+	}
 })
 
 /* ------------------- Post Upload Page ------------------- */
 app.post('/upload', function(req, res) {
 	// var imgInfo = req.files.piecePicture.path
 	// console.log(req.files.piecePicture)
+	var imgInfo = req.files.piecePicture.path;
+	var pieceType = req.body.selectpicker;
+	var user = req.getUser()
 
+	// get it to populate with userId and 
 	if (req.files.piecePicture) {
-		var user = req.session.user.id;
-		db.piece.create({where:{'userId':user}}).then(function(piece) {
-			var imgInfo = req.files.piecePicture.path
+		db.piece.create({'piecetypeId':pieceType, 'userId':user.id}).then(function(pieceData) {
+		
 			cloudinary.uploader.upload(imgInfo, function(result) {
-				res.send({result:result, piece:piece});
-				},{'public_id':'piece_'+piece.id})
+				// res.render('mycloset', {result:result, pieceType:pieceType, userId:user});
+				 res.redirect('/mycloset');
+				},{'public_id':'piece_' + pieceData.id})
 		})
 	} else {
 		req.flash('warning', 'Oops! No image found. Please upload a valid image.')
@@ -168,10 +180,27 @@ app.post('/upload', function(req, res) {
 });
 
 
-/* ------------------- Show picture Page ------------------- */
-app.get('/showPicture', function(req, res) {
-	res.render('show')
-})
+/* ------------------- My Closet Page ------------------- */
+app.get('/mycloset', function(req, res) {
+	var user = req.getUser();
+	if (user) {
+		db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay) {
+			// res.send({pieceDisplay:pieceDisplay});
+			var imgId = pieceDisplay.map(function(pieceId) {
+				return (cloudinary.url('piece_' + pieceId.id + '.jpg',{
+					width: 0.5,
+					height: 0.5,
+					radius: 5,
+					crop: 'fill'
+				}));
+			});
+			res.render('mycloset', {'imgId':imgId,'pieceDisplay':pieceDisplay});
+		});
+	} else {
+		req.flash('warning', 'Please log-in before continuing.');
+		res.redirect('login');
+	}
+});
 
 
 /* ------------------- Logout ------------------- */

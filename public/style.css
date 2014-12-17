@@ -1,6 +1,9 @@
 /* ------------------- Navbar ------------------- */
 /* use #444444 for black! */
 
+div {
+	/*border: 1px solid #000;*/
+}
 
 .container {
 /*	margin-top: 50px;*/
@@ -107,6 +110,15 @@ fieldset[disabled] .btn-primary.active {
   color: #FFFFFF; 
   background-color: #000000; 
 }
+
+.carousel {
+	width: 600px;
+	height: 200px;
+}
+
+/*.inner-item {
+    text-align: center;
+}*/
 
 /* ------------------- Links ------------------- */
 /*a:link {
