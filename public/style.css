@@ -113,12 +113,15 @@ fieldset[disabled] .btn-primary.active {
 
 .carousel {
 	width: 600px;
-	height: 200px;
+	height: 230px;
+	margin: 0 auto;
 }
 
-/*.inner-item {
-    text-align: center;
-}*/
+.carousel .item img {
+	margin: 0 auto;
+	padding-top: 40px;
+}
+
 
 /* ------------------- Links ------------------- */
 /*a:link {
