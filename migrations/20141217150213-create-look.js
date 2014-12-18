@@ -1,17 +1,17 @@
 "use strict";
 module.exports = {
   up: function(migration, DataTypes, done) {
-    migration.createTable("piecesoutfits", {
+    migration.createTable("looks", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      pieceId: {
+      outfitId: {
         type: DataTypes.INTEGER
       },
-      outfitId: {
+      pieceId: {
         type: DataTypes.INTEGER
       },
       createdAt: {
@@ -25,6 +25,6 @@ module.exports = {
     }).done(done);
   },
   down: function(migration, DataTypes, done) {
-    migration.dropTable("piecesoutfits").done(done);
+    migration.dropTable("looks").done(done);
   }
 };

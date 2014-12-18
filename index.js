@@ -1,15 +1,17 @@
 var express = require('express');
 var session = require('express-session');
+var bodyParser = require('body-parser');
 var request = require('request');
 var bcrypt = require('bcrypt');
 var flash = require('connect-flash');
 var app = express();
 var db = require('./models');
 var multer = require('multer');
-var cloudinary = require('cloudinary');
+var cloudinary = require	('cloudinary');
 
 app.set('view engine', 'ejs');
 
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/public'));
 app.use(multer({dest: __dirname+'/uploads'}));
 app.use(session ({
@@ -28,6 +30,7 @@ app.use(function(req, res, next){
 
 /* ---------- Applies flash msg to every * page ---------- */
 app.get('*', function(req, res, next) {
+
 	var alerts = req.flash();
 	res.locals.alerts = alerts;
 	next();
@@ -216,12 +219,50 @@ app.get('/mycloset', function(req, res) {
 
 /* ------------------- My Outfits Page ------------------- */
 app.get('/outfits', function(req, res) {
-	res.render('outfits');
-})
+	var user = req.getUser();
+		if (user) {
+			db.outfit.findAll({
+				where:{userId:user.id},
+				include:[{model:db.piece},{model:db.tag}]
+			}).then(function(outfits){
+				res.render('outfits', {'outfits':outfits});
+			});
+		} else {
+			req.flash('warning', 'Please log-in before continuing.');
+			res.redirect('login');
+		}
+});
 
-app.post('outfits', function(req, res){
-	res.send(req.body);
-})
+app.post('/outfits', function(req, res){
+	var user = req.getUser();
+	db.outfit.create({'tagId':req.body.tagSelect,'userId':user.id}).then(function(createdOutfit){
+    	db.look.create({'pieceId':req.body.topId,'outfitId':createdOutfit.id}).then(function(createdTops){
+    		db.look.create({'pieceId':req.body.bottomId,'outfitId':createdOutfit.id}).then(function(createdBottoms){
+    			db.tag.find({id:req.body.tagSelect}).then(function(tagName){
+	    			// console.log({'outfits':createdOutfit,'top':createdTops,'bottom':createdBottoms});
+	    			var displayInfo = {
+	    				'outfits':createdOutfit,
+	    				'top':createdTops,
+	    				'bottom':createdBottoms,
+	    				'tagName':tagName
+	    			}
+	    			res.send('outfits',{'displayInfo':displayInfo});
+    			});
+    		});      
+	    });
+	});
+});
+
+app.delete('/outfits', function(req, res){
+	var user = req.getUser();
+	db.outfit.find({where:{'userId':user.id}}).then(function(removedOutfit){
+		db.look.destroy({where:{'outfitId':removedOutfit.id}}).then(function(removedLook){
+			db.outfit.destroy({where:{'id':removedOutfit.id}}).then(function(removedOutfitAgain){
+				res.send({deleted: true});
+			})
+		})
+	})
+});
 
 
 /* ------------------- Logout ------------------- */

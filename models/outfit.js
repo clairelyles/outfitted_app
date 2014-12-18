@@ -3,12 +3,12 @@
 module.exports = function(sequelize, DataTypes) {
   var outfit = sequelize.define("outfit", {
     tagId: DataTypes.INTEGER,
-    comment: DataTypes.STRING
+    userId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
-        // models.outfit.hasMany(models.piece)
-        // models.outfit.belongsTo(models.piece)
+        models.outfit.hasMany(models.look)
+        models.outfit.hasMany(models.piece,{through:models.look})
         models.outfit.belongsTo(models.tag)
       }
     }

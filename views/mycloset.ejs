@@ -4,7 +4,7 @@
 <div class='contianer'>
 	<div class='row'>
 		<div class='col-xs-2 cl-md-2'></div>
-		<div class='col-xs-8 cl-md-8'>
+		<div class='col-xs-7 cl-md-7'>
 			<!-- BEGIN TOP CAROUSEL -->
 			<div class='piece-container'>
 				<div id='top-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
@@ -44,7 +44,7 @@
 			</div>
 			<!-- END OF BOTTOM CAROUSEL -->
 		</div>
-		<div class='col-xs-2 col-md-2'>
+		<div class='col-xs-3 col-md-3'>
 			<div class='favorite-space'>
 				<a href='/outfits' id='faveButton'>
 					<div class='favorite text-center'>
@@ -56,7 +56,7 @@
 				<select class='selectTag' data-style='btn-info' name='selectTag'>
 					<optgroup label="Select a tag">
 					<% for (i = 0; i < tags.length; i++) { %>
-						<option value="<%= tags[i].id %>"><%= tags[i].tag_name %></option>
+						<option value="<%= tags[i].id %>" data-tagId='<%= tags[i].id %>' class='tagSelections'><%= tags[i].tag_name %></option>
 					<% } %>
 					</optgroup>
 				</select>
