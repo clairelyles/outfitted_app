@@ -79,6 +79,10 @@ app.post('/signup', function(req, res) {
 	});
 });
 
+app.get('/testingcss', function(req, res){
+	res.render('testingcss');
+});
+
 
 /* ------------------- Login Page ------------------- */
 app.get('/login', function(req, res) {
