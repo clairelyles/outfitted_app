@@ -203,8 +203,6 @@ app.get('/mycloset', function(req, res) {
 					outPiece.userId = piece.userId;
 					outPiece.piecetypeId = piece.piecetypeId;
 					outPiece.image = (cloudinary.url('piece_' + piece.id + '.jpg',{
-						width: 0.5,
-						height: 0.5,
 						radius: 5,
 						crop: 'fill'
 					}));
@@ -227,11 +225,10 @@ app.get('/mycloset', function(req, res) {
 	};
 });
 
-/* ------------------- My Outfits Page ------------------- */
+/* ------------------- My Testing Page ------------------- */
 app.get('/testingcss', function(req, res){
 	res.render('testingcss');
 })
-
 
 /* ------------------- My Outfits Page ------------------- */
 app.get('/outfits', function(req, res){

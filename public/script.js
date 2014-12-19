@@ -39,7 +39,6 @@ $(function() {
 			type: 'DELETE',
 			url: '/outfits'
 		}).success(function(data){
-			alert("HERE");
 			myOutfit.parent().parent().fadeOut('fast');
 		})
 	});

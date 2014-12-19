@@ -1,66 +1,69 @@
 <% include partials/header %>
 
-<h1>My Closet</h1>
-<div class='contianer'>
-	<div class='row'>
-		<div class='col-xs-2 cl-md-2'></div>
-		<div class='col-xs-7 cl-md-7'>
-			<!-- BEGIN TOP CAROUSEL -->
-			<div class='piece-container'>
-				<div id='top-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
-					<div class='carousel-inner'>
-				    <% for (i = 0; i < topPieces.length; i++) { %>
-					    <div class='item<%= i==0 ? ' active' : '' %>'>
-					    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= topPieces[i].id %>' data-pieceId='<%= topPieces[i].id %>' data-piecetypeId='<%= topPieces[i].piecetypeId %>' data-userId='<%= topPieces[i].userId %>'>
+<div class='container-content'>	
+	<h2>My Closet</h2>
+	<div class='contianer'>
+		<div class='row'>
+	
+			<div class='col-xs-8 cl-md-8'>
+				<!-- BEGIN TOP CAROUSEL -->
+				<div class='piece-container'>
+					<div id='top-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
+						<div class='carousel-inner'>
+					    <% for (i = 0; i < topPieces.length; i++) { %>
+						    <div class='item<%= i==0 ? ' active' : '' %>'>
+						    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= topPieces[i].id %>' data-pieceId='<%= topPieces[i].id %>' data-piecetypeId='<%= topPieces[i].piecetypeId %>' data-userId='<%= topPieces[i].userId %>'>
+						    </div>
+						<% } %>
+						</div>
+						<a class='left carousel-control' href='#top-piece-carousel' role='button' data-slide='prev'>
+							<span class='glyphicon glyphicon-chevron-left'></span>
+						</a>
+						<a class='right carousel-control' href='#top-piece-carousel' role='button' data-slide='next'>
+							<span class='glyphicon glyphicon-chevron-right'></span>
+					    </a>
+					</div> 
+				</div>
+				<!-- END OF TOP CAROUSEL -->
+				<!-- BEGIN BOTTOM CAROUSEL -->
+				<div class='piece-container'>
+					<div id='bottom-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
+						<div class='carousel-inner'>
+					    <% for (i = 0; i < bottomPieces.length; i++) { %>
+						    <div class='item<%= i==0 ? ' active' : '' %>'>
+						    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= bottomPieces[i].id %>' data-pieceId='<%= bottomPieces[i].id %>' data-piecetypeId='<%= bottomPieces[i].piecetypeId %>' data-userId='<%= bottomPieces[i].userId %>'>
+						    </div>
+					    <% } %>
 					    </div>
-					<% } %>
-					</div>
-					<a class='left carousel-control' href='#top-piece-carousel' role='button' data-slide='prev'>
-						<span class='glyphicon glyphicon-chevron-left'></span>
+					    <a class='left carousel-control' href='#bottom-piece-carousel' role='button' data-slide='prev'>
+					    	<span class='glyphicon glyphicon-chevron-left'></span>
+					    </a>
+					    <a class='right carousel-control' href='#bottom-piece-carousel' role='button' data-slide='next'>
+					    	<span class='glyphicon glyphicon-chevron-right'></span>
+					    </a>
+					</div> 
+				</div>
+				<!-- END OF BOTTOM CAROUSEL -->
+			</div>
+			<div class='col-xs-3 col-md-3'>
+				<div class='favorite-space'>
+					<a href='/outfits' id='faveButton'>
+						<div class='favorite text-center'>
+					       	<h2>Favorite!</h2>
+					    </div>
 					</a>
-					<a class='right carousel-control' href='#top-piece-carousel' role='button' data-slide='next'>
-						<span class='glyphicon glyphicon-chevron-right'></span>
-				    </a>
-				</div> 
+					<br />
+					<h3>What type of outfit is this?</h3>
+					<select class='selectTag' data-style='btn-info' name='selectTag'>
+						<optgroup label="Select a tag">
+						<% for (i = 0; i < tags.length; i++) { %>
+							<option value="<%= tags[i].id %>" data-tagId='<%= tags[i].id %>' class='tagSelections'><%= tags[i].tag_name %></option>
+						<% } %>
+						</optgroup>
+					</select>
+				</div>
 			</div>
-			<!-- END OF TOP CAROUSEL -->
-			<!-- BEGIN BOTTOM CAROUSEL -->
-			<div class='piece-container'>
-				<div id='bottom-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
-					<div class='carousel-inner'>
-				    <% for (i = 0; i < bottomPieces.length; i++) { %>
-					    <div class='item<%= i==0 ? ' active' : '' %>'>
-					    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= bottomPieces[i].id %>' data-pieceId='<%= bottomPieces[i].id %>' data-piecetypeId='<%= bottomPieces[i].piecetypeId %>' data-userId='<%= bottomPieces[i].userId %>'>
-					    </div>
-				    <% } %>
-				    </div>
-				    <a class='left carousel-control' href='#bottom-piece-carousel' role='button' data-slide='prev'>
-				    	<span class='glyphicon glyphicon-chevron-left'></span>
-				    </a>
-				    <a class='right carousel-control' href='#bottom-piece-carousel' role='button' data-slide='next'>
-				    	<span class='glyphicon glyphicon-chevron-right'></span>
-				    </a>
-				</div> 
-			</div>
-			<!-- END OF BOTTOM CAROUSEL -->
-		</div>
-		<div class='col-xs-3 col-md-3'>
-			<div class='favorite-space'>
-				<a href='/outfits' id='faveButton'>
-					<div class='favorite text-center'>
-				       	<h2>Favorite!</h2>
-				    </div>
-				</a>
-				<br />
-				<h3>What type of outfit is this?</h3>
-				<select class='selectTag' data-style='btn-info' name='selectTag'>
-					<optgroup label="Select a tag">
-					<% for (i = 0; i < tags.length; i++) { %>
-						<option value="<%= tags[i].id %>" data-tagId='<%= tags[i].id %>' class='tagSelections'><%= tags[i].tag_name %></option>
-					<% } %>
-					</optgroup>
-				</select>
-			</div>
+			<div class='col-xs-1 cl-md-1'></div>
 		</div>
 	</div>
 </div>
