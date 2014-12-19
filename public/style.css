@@ -9,6 +9,7 @@ div {
 /*	margin-top: 50px;*/
 }
 
+
 .polariod-outer {
 	background: #ffffff;
 	width: 25%;
@@ -25,6 +26,10 @@ div {
 	-webkit-box-shadow: inset 0 0 10px rgba(204,204,204, 0.8);
 	box-shadow: inset 0 0 10px rgba(204,204,204, 0.8);
 	border: 1px solid #ccc;
+}
+
+.form-control {
+	padding: 10px;
 }
 
 
