@@ -7,7 +7,7 @@ var flash = require('connect-flash');
 var app = express();
 var db = require('./models');
 var multer = require('multer');
-var cloudinary = require	('cloudinary');
+var cloudinary = require('cloudinary');
 
 app.set('view engine', 'ejs');
 
@@ -45,23 +45,28 @@ app.get('/', function(req, res) {
 })
 
 
-/* ------------------- Signup Page ------------------- */
-app.get('/signup', function(req, res) {
-	res.render('signup');
+/* ------------------- Signup Post ------------------- */
+app.get('/signup', function(req,res) {
+	res.render('landing');
 })
 
 app.post('/signup', function(req, res) {
+	// res.send(req.body);
 	db.user.findOrCreate({
 		where:{
 			'email':req.body.email
 		},
 		defaults:{
-			'email':req.body.email,
 			'password':req.body.password,
 			'first_name':req.body.first_name
 		}
 	}).spread(function(userInfo, created) {
-			// res.send(userInfo)
+			req.session.user = {
+				id: userInfo.id,
+				email: userInfo.email,
+				name: userInfo.first_name
+			};
+
 			res.redirect('/landing');
 	}).catch(function(error) {
 		if (error && Array.isArray(error.errors)) {
@@ -70,27 +75,28 @@ app.post('/signup', function(req, res) {
 			error.errors.forEach(function(errorItem) {
 				// if error, display error message
 				req.flash('danger', errorItem.message)
+							res.redirect('/');
+
 			});
 		} else {
 			// for unknown errors
 			res.flash('danger', 'Unknown error');
+			res.redirect('/');
 		}
-		res.redirect('signup');
 	});
 });
 
-app.get('/testingcss', function(req, res){
-	res.render('testingcss');
-});
+// app.get('/testingcss', function(req, res){
+// 	res.render('testingcss');
+// });
 
 
-/* ------------------- Login Page ------------------- */
-app.get('/login', function(req, res) {
-	res.render('login');
+/* ------------------- Login Post ------------------- */
+app.get('/login', function(req,res) {
+	res.render('landing');
 })
 
 app.post('/login', function(req, res) {
-	// res.render('login');
 	db.user.find({where: {'email':req.body.email}}).then(function(userObj) {
 		if (userObj) {
 			bcrypt.compare(req.body.password, userObj.password, function(err, match) {
@@ -100,20 +106,20 @@ app.post('/login', function(req, res) {
 					email: userObj.email,
 					name: userObj.first_name
 				};
-				res.redirect('/landing');
+				res.redirect('landing');
 			} else {
 				req.flash('warning', 'Invalid password, please try again.');
-				res.redirect('/login');
+				res.redirect('/');
 			}
 		})
 	} else {
 		req.session.count ? req.session.count = req.session.count +1 : req.session.count = 1;
 		if (req.session.count > 2) {
 			req.flash('warning', 'Too many incorrect log-in attempts. Please create an account')
-			res.redirect('/signup');
+			res.redirect('/');
 		} else {
 			req.flash('warning', 'Unknown User, please try again.')
-			res.redirect('/login');
+			res.redirect('/');
 			}
 		}		
 	});
@@ -139,7 +145,7 @@ app.get('/landing', function(req, res) {
 		});
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('login');
+		res.redirect('/');
 	};
 });
 
@@ -154,7 +160,7 @@ app.get('/upload', function(req, res) {
 		})
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('login');
+		res.redirect('/');
 	}
 })
 
@@ -217,12 +223,18 @@ app.get('/mycloset', function(req, res) {
 		});
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('login');
+		res.redirect('/');
 	};
 });
 
 /* ------------------- My Outfits Page ------------------- */
-app.get('/outfits', function(req, res) {
+app.get('/testingcss', function(req, res){
+	res.render('testingcss');
+})
+
+
+/* ------------------- My Outfits Page ------------------- */
+app.get('/outfits', function(req, res){
 	var user = req.getUser();
 		if (user) {
 			db.outfit.findAll({
@@ -233,7 +245,7 @@ app.get('/outfits', function(req, res) {
 			});
 		} else {
 			req.flash('warning', 'Please log-in before continuing.');
-			res.redirect('login');
+			res.redirect('/');
 		}
 });
 

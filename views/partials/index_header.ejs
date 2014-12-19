@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:light,regular,bold' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
 	<script src='//code.jquery.com/jquery-1.11.0.min.js'></script>
@@ -10,25 +11,28 @@
 	<script src='/script.js'></script>
 <style>
 	body {
-	    background-image: url('http://www.tech-lovers.com/wp-content/uploads/2014/01/Leopard-Print-texture-pattern-Cheetah-Print-Leopard-Skin-Textures.jpg');
+	    background-image: url('/hangerbg.gif');
 	    background-repeat: repeat-y repeat-x;
-	    font-family: 'Cantarell';
+	    font-family: 'Roboto';
+	    font-weight: lighter;
 	}	
 
 	h1 {
 		color: #000;
-		font-size: 48px;
-		font-family: 'Fjalla One', sans-serif;
+		font-size: 52px;
+		font-family: 'Roboto', sans-serif;
+	/*	font-weight: bold;*/
 	}
 
 	h2 {
 		color: #000;
 		font-size: 32px;
-		font-family: 'Fjalla One', sans-serif;
+		font-family: 'Roboto', sans-serif;
+		font-weight: lighter;
 	}
 
 
-	.signin-login {
+	.signup-login {
 		text-align: left;
 		background-color: #ffffff;
 /*		width: 900px;
@@ -36,18 +40,21 @@
 		margin-top: 100px;
 		padding-bottom: 30px;
 		padding-top: 10px;
+		padding-left: 5px;
 	}
 
-	.signin {
+	.signup {
 		margin-top: 20px;
 		margin-bottom: 20px;
 		border-right: 1px solid #000;
 /*		padding: 40px;*/
+		padding-right: 20px;
 	}
 
 	.login {
 		margin-top: 20px;
 		margin-bottom: 20px;
+		padding-left: 20px;
 	}
 
 /* --- BUTTONS --- */
@@ -141,37 +148,3 @@ fieldset[disabled] .btn-primary.active {
 
 </head>
 <body>
-<div class='container text-center'>
-	<div class='row'>
-		<div class='col-md-3 col-xs-3'></div>
-		<div class='col-md-6 col-xs-6 signin-login'>
-			<h1 class='header'>Outfitted</h1>
-			<div class='col-md-6 col-xs-6 signin'>
-				<!-- BEGIN SIGN IN -->
-				<h2>SIGN IN</h2>
-				<form class='form-signin' method='post' action='/index' enctype='multipart/form-data'>
-					<input type='text' class='form-control' placeholder='Enter your email' name='email'>
-					<input type='text' class='form-control' placeholder='Enter your first name' name='first_name'>
-					<input type='password' class='form-control' placeholder='Enter your password' name='password'>
-					<input type='password' class='form-control' placeholder='Re-enter your password' name='password2'>
-					<input type='submit' value='Sign up' class='btn btn-primary'>
-				</form>
-				<!-- END SIGN IN -->
-			</div>
-			<div class='col-md-6 col-xs-6 login'>
-			<!-- BEGIN LOG IN -->
-			<h2>LOG IN</h2>
-			<form class='form-signin' method='post' action='/index' enctype='multipart/form-data'>
-				<input type='text' class='form-control' placeholder='Enter your email' name='email' value='claire@gmail.com'>
-				<input type='password' class='form-control' placeholder='Enter your password' name='password'value='claire'>
-				<input type='submit' value='Log in' class='btn btn-primary'>
-			</form>
-			<!-- END LOG IN -->
-			</div>
-		</div>
-		<div class='col-md-3 col-xs-3'></div>
-	</div>
-</div>
-
-</body>
-</html>

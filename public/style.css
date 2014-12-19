@@ -129,18 +129,31 @@ div {
 
 .footer {
 	margin-top: 100px;
+	padding: 60px;
 }
 
 body {
 /*	background-color: rgba(255,255,255,0.5);
 	background-image: url('http://i955.photobucket.com/albums/ae32/svanhoose/Icons/006h32bc.png');
 	background-repeat: repeat-y repeat-x;*/
+	font-family: 'Roboto';
+    font-weight: lighter;
 }
 
 
 h1 {
 	font-size: 48px;
+	color: #000;
+	font-size: 52px;
+	font-family: 'Roboto', sans-serif;
 }
+
+h2 {
+		color: #000;
+		font-size: 32px;
+		font-family: 'Roboto', sans-serif;
+		font-weight: lighter;
+	}
 
 /* ------------------- button ------------------- */
 

@@ -1,29 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Outfitted</title>
-	<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
-	<link rel='stylesheet' type='text/css' href='/style.css'>
-	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
-	<script src='//code.jquery.com/jquery-1.11.0.min.js'></script>
-	<script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
-	<script src='/script.js'></script>
-</head>
-<body>
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class='page-header'>
-  <div class='container'>
-    <h1>
-      Out<strong>fitted</strong>
-    </h1>
-  </div>
-</div>
-<div class='container'>
-	<% include partials/alerts %>
-	<div class='container text-center'>
-		<a href="/login" class="btn btn-primary btn-lg">Login</a>
-		<a href="/signup" class="btn btn-primary btn-lg">Signup</a>
+<% include partials/index_header %>
+<div class='container text-center'>
+	<div class='row'>
+		<div class='col-md-3 col-xs-3'></div>
+		<div class='col-md-6 col-xs-6 signup-login'>
+			<h1 class='header'>Out<strong>fitted</strong></h1>
+				<% include partials/alerts %>
+			<div class='col-md-6 col-xs-6 signup'>
+				<!-- BEGIN SIGN UP -->
+				<h2>SIGN UP</h2>
+				<form class='form-signup' method='post' action='/signup' enctype='multipart/form-data'>
+					<input type='text' class='form-control' placeholder='Enter your email' name='email'>
+					<input type='text' class='form-control' placeholder='Enter your first name' name='first_name'>
+					<input type='password' class='form-control' placeholder='Enter your password' name='password'>
+					<input type='password' class='form-control' placeholder='Re-enter your password' name='password2'>
+					<input type='submit' value='Sign up' class='btn btn-primary'>
+				</form>
+				<!-- END SIGN UP -->
+			</div>
+			<div class='col-md-6 col-xs-6 login'>
+			<!-- BEGIN LOG IN -->
+			<h2>LOG IN</h2>
+			<form class='form-login' method='post' action='/login' enctype='multipart/form-data'>
+				<input type='text' class='form-control' placeholder='Enter your email' name='email' value='claire@gmail.com'>
+				<input type='password' class='form-control' placeholder='Enter your password' name='password' value='claire'>
+				<input type='submit' value='Log in' class='btn btn-primary'>
+			</form>
+			<!-- END LOG IN -->
+			</div>
+		</div>
+		<div class='col-md-3 col-xs-3'></div>
 	</div>
 </div>
-<% include partials/footer %>
+
+<% include partials/index_footer %>
