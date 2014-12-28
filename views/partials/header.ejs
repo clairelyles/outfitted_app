@@ -4,7 +4,7 @@
 	<title>Outfitted</title>
 	<script src='//code.jquery.com/jquery-2.1.1.min.js'></script>
   <script src='/script.js'></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'></script>
   <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
   <link rel='stylesheet' type='text/css' href='/style.css'>
   <link href='https://fonts.googleapis.com/css?family=Roboto:light,regular,bold' rel='stylesheet' type='text/css'>
@@ -15,27 +15,29 @@
 <div class='page-header'>
   <div class='container'>
     <h1>
-      <a href="/landing">Out<strong>fitted</strong></a>
+      <a href='/landing'>Out<strong>fitted</strong></a>
     </h1>
   </div>
 </div>
 <!-- ze navbar -->
-<div class='navbar navbar-default'>
-  <div class='container'>
-    <ul class='nav navbar-nav navbar-right'>
-        <li class='nav-item'>
-          <a href='/mycloset'>MY CLOSET</a>
-        </li>
-      <li class='nav-item'>
-        <a href='/outfits'>OUTFITS</a>
-      </li>
-      <li class='nav-item'>
-        <a href='/upload'>UPLOAD</a>
-      </li>
-      <li class='nav-item'>
-        <a href='/logout'>LOGOUT</a>
-      </li>
+<nav class='navbar navbar-default' role='navigation'>
+  <div class='navbar-header'>
+    <button type='button' class='navbar-toggle' data-toggle='collapse' 
+      data-target='#example-navbar-collapse'>
+      <span class='sr-only'>Toggle navigation</span>
+      <span class='icon-bar'></span>
+      <span class='icon-bar'></span>
+      <span class='icon-bar'></span>
+    </button>
+  </div>
+  <div class='container collapse navbar-collapse' id='example-navbar-collapse'>
+    <ul class='nav navbar-nav'>
+      <li class='nav-item'><a href='/mycloset'>MY CLOSET</a></li>
+      <li class='nav-item'><a href='/outfits'>OUTFITS</a></li>
+      <li class='nav-item'><a href='/upload'>UPLOAD</a></li>
+      <li class='nav-item'><a href='/upload'>ABOUT</a></li>
+      <li class='nav-item'><a href='/logout'>LOGOUT</a></li>
     </ul>
   </div>
-</div>
+</nav>
     <div class='container-main'>

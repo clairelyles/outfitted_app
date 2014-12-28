@@ -259,7 +259,8 @@ app.post('/outfits', function(req, res){
 	    				'bottom':createdBottoms,
 	    				'tagName':tagName
 	    			}
-	    			res.send('outfits',{'displayInfo':displayInfo});
+	    			res.send({displayInfo:displayInfo});
+	    			// res.send('outfits', {'displayInfo':displayInfo});
     			});
     		});      
 	    });

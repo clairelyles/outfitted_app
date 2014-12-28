@@ -42,4 +42,6 @@ $(function() {
 			myOutfit.parent().parent().fadeOut('fast');
 		})
 	});
+
+	$('.dropdown-toggle').dropdown()
 });

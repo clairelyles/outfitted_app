@@ -53,9 +53,9 @@
 					    </div>
 					</a>
 					<br />
-					<h3>What type of outfit is this?</h3>
-					<select class='selectTag' data-style='btn-info' name='selectTag'>
-						<optgroup label="Select a tag">
+					<h3>How would you describe this outfit?</h3>
+					<select class='selectTag form-control' data-style='btn-primary' name='selectTag'>
+						<option selected disabled>Choose here</option>
 						<% for (i = 0; i < tags.length; i++) { %>
 							<option value="<%= tags[i].id %>" data-tagId='<%= tags[i].id %>' class='tagSelections'><%= tags[i].tag_name %></option>
 						<% } %>

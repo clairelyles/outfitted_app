@@ -7,10 +7,13 @@
 	<form action='/upload' method='post' enctype='multipart/form-data'>
 	<br />
 	<br />
-		<input type='file' name='piecePicture'>
+		<span class="btn btn-primary btn-file btn-md">
+			<span class='glyphicon glyphicon-cloud-upload'> Upload</span>
+			<input type='file' class='btn-primary' name='piecePicture'>
+		</span>
 		<h3>What kind of item is it?</h3>
-		<select class='selectpicker' data-style='btn-info' name='selectpicker'>
-			<optgroup label="Select Piece">
+		<select class='selectpicker form-control' data-style='btn-info' name='selectpicker'>
+			<option selected disabled>Choose here</option>
 			<% for (i = 0; i < piecetype.length; i++) { %>
 				<option value="<%= piecetype[i].id %>"><%= piecetype[i].type %></option>
 			<% } %>
