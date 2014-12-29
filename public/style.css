@@ -4,6 +4,27 @@ div {
 /*	border: 1px solid #000;*/
 }
 
+@media (max-width: 600px) {
+  .container {
+/*	margin-left: 5%;
+	margin-right: 5%;*/
+	padding: 0px;
+	}
+
+  .container-main {
+  	background-color: #fff;
+  	width: 100%;
+  	margin-top: 0px;
+  	padding: 0px;
+  	}
+
+  .container-content {
+/*	padding-right: 50px;*/
+	padding-left: 10px;
+	margin-top: 0px;
+	}
+}
+
 .container {
 	margin-left: 10%;
 	margin-right: 10%;
@@ -13,14 +34,12 @@ div {
 .container-main {
 	text-align: left;
 	background-color: #fff;
-	margin-top: 80px;
-	margin-left: 100px;
-	margin-right: 100px;
+	margin-top: 60px;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-bottom: 150px;
 	padding-bottom: 80px;
 	padding-top: 10px;
-/*	padding-right: 50px;*/
-/*	padding-left: 10px;*/
 }
 
 .container-content {
@@ -30,7 +49,7 @@ div {
 }
 
 .page-header {
-	margin-left: 0px;
+	padding-left: 10%;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	background: #fff;
@@ -187,9 +206,6 @@ li.nav-item a:hover {
 }
 
 body {
-/*	background-color: rgba(255,255,255,0.5);
-	background-image: url('http://i955.photobucket.com/albums/ae32/svanhoose/Icons/006h32bc.png');
-	background-repeat: repeat-y repeat-x;*/
 	font-family: 'Roboto';
     font-weight: lighter;
     background-image: url('http://www.tech-lovers.com/wp-content/uploads/2014/01/Leopard-Print-texture-pattern-Cheetah-Print-Leopard-Skin-Textures.jpg');
