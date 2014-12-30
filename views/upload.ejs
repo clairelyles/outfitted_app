@@ -2,26 +2,40 @@
 
 
 <div class='container-content'>	
-	<h2>Upload</h2>
+	<h2>UPLOAD</h2>
 	<% include partials/alerts %>
-	<form action='/upload' method='post' enctype='multipart/form-data'>
-	<br />
-	<br />
-		<span class="btn btn-primary btn-file btn-md">
-			<span class='glyphicon glyphicon-cloud-upload'> Upload</span>
-			<input type='file' class='btn-primary' name='piecePicture'>
-		</span>
-		<h3>What kind of item is it?</h3>
-		<select class='selectpicker form-control' data-style='btn-info' name='selectpicker'>
-			<option selected disabled>Choose here</option>
-			<% for (i = 0; i < piecetype.length; i++) { %>
-				<option value="<%= piecetype[i].id %>"><%= piecetype[i].type %></option>
-			<% } %>
-			</optgroup>
-		</select>
-		<br><br>
-		<input type='submit' class='btn btn-primary btn-lg'>
-	</form>
+    <div class='row'>
+    	<div class='col-xs-6 col-md-6'>
+    		<p>For best results, drape each article of clothing against a solid background (e.g. a closet door, curtain, drape, or window shade) prior to taking a photo. The ideal image size for uploading tops is 300 x 300 pixles, and 300 x 350 pixels for bottoms.
+    		<br />
+    		<br />
+    		<img src='/shirtsize.jpg' class='img-responsive text-center pagination-centered' id='shirtsize' align='center'>
+    	</div>
+    	<div class='col-xs-1 col-md-1'></div>
+    	<div class='col-xs-5 col-md-5'>
+			<form action='/upload' method='post' enctype='multipart/form-data'>
+				<br />
+				<br />
+				<span class="btn btn-primary btn-file btn-md">
+					<span class='glyphicon glyphicon-cloud-upload'></span> Choose File
+					<input type='file' class='btn-primary' name='piecePicture'>
+				</span>
+				<br />
+				<br />
+				<p>What kind of item is it?
+				<select class='selectpicker form-control' data-style='btn-info' name='selectpicker'>
+					<option selected disabled>Choose Type</option>
+					<% for (i = 0; i < piecetype.length; i++) { %>
+						<option value="<%= piecetype[i].id %>"><%= piecetype[i].type %></option>
+					<% } %>
+					</optgroup>
+				</select>
+				</p>
+				<br />
+				<input type='submit' class='btn btn-primary btn-md' value='Upload'></p>
+			</form>
+		</div>
+	</div>
 </div>
 
 <% include partials/footer %>

@@ -43,5 +43,7 @@ $(function() {
 		})
 	});
 
-	$('.dropdown-toggle').dropdown()
+
+
+
 });

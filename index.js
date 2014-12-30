@@ -168,21 +168,27 @@ app.get('/upload', function(req, res) {
 app.post('/upload', function(req, res) {
 	// var imgInfo = req.files.piecePicture.path
 	// console.log(req.files.piecePicture)
-	var imgInfo = req.files.piecePicture.path;
 	var pieceType = req.body.selectpicker;
 	var user = req.getUser()
 
+	// if (req.files.piecePicture === undefined) {
+	// 	res.send('error caught');
+	// } else {
+	// 	res.redirect('/upload')
+	// }
+
 	// get it to populate with userId and 
-	if (req.files.piecePicture) {
+	if (pieceType && req.files.piecePicture != undefined) {
+		var imgInfo = req.files.piecePicture.path;
 		db.piece.create({'piecetypeId':pieceType, 'userId':user.id}).then(function(pieceData) {
-		
 			cloudinary.uploader.upload(imgInfo, function(result) {
 				// res.render('mycloset', {result:result, pieceType:pieceType, userId:user});
+				 req.flash('info', 'A new item has been added to your closet.')
 				 res.redirect('/mycloset');
 				},{'public_id':'piece_' + pieceData.id})
 		})
 	} else {
-		req.flash('warning', 'Oops! No image found. Please upload a valid image.')
+		req.flash('danger', 'Oops! Please choose a file and item type.')
 		res.redirect('upload');
 	}
 });
@@ -279,10 +285,23 @@ app.delete('/outfits', function(req, res){
 });
 
 
+/* ------------------- About Me ------------------- */
+
+app.get('/about', function(req,res){
+	var user = req.getUser();
+	if (user) {
+		res.render('about');
+	} else {
+		req.flash('warning', 'Please log-in before continuing.');
+		res.redirect('/');
+	}
+})
+
+
 /* ------------------- Logout ------------------- */
 app.get('/logout', function(req, res) {
 	delete req.session.user;
-	req.flash('info', 'you have been logged out.');
+	req.flash('info', 'You have been logged out.');
 	res.redirect('/');
 })
 

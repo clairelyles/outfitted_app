@@ -1,13 +1,42 @@
 <% include partials/header %>
-      <div class='container-content'>
-		        <h1 class='post-title'>Welcome <strong><%= userInfo.first_name %>.</strong></h1>
+    <div class='container-content'>
+        <div class='row'>
+        	<div class='col-xs-5 col-md-5 text-center'>
+		        <br />
+		        <br />
+		        <h2 class='post-title'><strong>WELCOME <upcase><%= userInfo.first_name.toUpperCase() %></upcase></strong></h2>
 		       
 		        <% var convertF = ((temp.temp - 273.15) * 1.8000) + 32 %>
 		        <% var lowerCaseDesc = description.main.toLowerCase() %>
-		        <h3>The weather in Seattle is: <%= Math.floor(convertF)+'°' %> with <%= lowerCaseDesc %>.</h3>
+		        <p>We know weather plays a crucial role when planning an outfit. Don't forget the weather in Seattle today is: <br /></p>
+		        <h3><%= Math.floor(convertF)+'°' %> and <%= lowerCaseDesc %>.</h3>
+		    </div>
+		    <div class='col-xs-1 col-md-1'></div>
+		    <div class='col-xs-5 col-md-5 text-center'>
+		    	<br/>
+		    	<img src='/weather.jpg' class='img-responsive'>
+		    	<br/>
+		    </div>
+		</div>
+        <div class='row'>
+        		<div class='col-xs-1 col-md-1'></div>
+        	<div class='col-xs-4 col-md-4 text-center'>
+        		<img src='/landingpolaroids2.jpg' class='img-responsive'>
+        	</div>
+        	<div class='col-xs-1 col-md-1'></div>
+        	<div class='col-xs-5 col-md-5 text-center'>
+        		<br />
+        		<br />
+        		<h2>GET STYLING TODAY</h2>
+        		<p>Ever get bored of the clothes you own? Feel like you're always in a rush out the door and never have time to get that "put together" look? We're here to help.
+        		<br />
+        		<br />
+        		Get a head start with <strong>OutFitted</strong>&mdash;your virtual closet for creating mood-outfit combinations using the clothes from your wardrobe.</p>
+        	</div>
+        </div>
         	<br />
          	<br />
-	   </div>
+	</div>
 	   
 
 <% include partials/footer %>

@@ -1,10 +1,10 @@
 <% include partials/header %>
 
 <div class='container-content'>	
-	<h2>My Closet</h2>
+	<h2>MY CLOSET</h2>
+	<% include partials/alerts %>
 	<div class='contianer'>
 		<div class='row'>
-	
 			<div class='col-xs-8 cl-md-8'>
 				<!-- BEGIN TOP CAROUSEL -->
 				<div class='piece-container'>
@@ -47,20 +47,27 @@
 			</div>
 			<div class='col-xs-3 col-md-3'>
 				<div class='favorite-space'>
-					<a href='/outfits' id='faveButton'>
-						<div class='favorite text-center'>
-					       	<h2>Favorite!</h2>
-					    </div>
-					</a>
-					<br />
-					<h3>How would you describe this outfit?</h3>
-					<select class='selectTag form-control' data-style='btn-primary' name='selectTag'>
-						<option selected disabled>Choose here</option>
-						<% for (i = 0; i < tags.length; i++) { %>
-							<option value="<%= tags[i].id %>" data-tagId='<%= tags[i].id %>' class='tagSelections'><%= tags[i].tag_name %></option>
-						<% } %>
-						</optgroup>
-					</select>
+					<ol>
+						<li><p>Click through items in your closet until you find a match.</p></li>
+						<br />
+						<br />
+						<li><p>How would you describe this outfit?</p>
+							<select class='selectTag form-control' data-style='btn-primary' name='selectTag'>
+								<option selected disabled>Choose here</option>
+								<% for (i = 0; i < tags.length; i++) { %>
+									<option value="<%= tags[i].id %>" data-tagId='<%= tags[i].id %>' class='tagSelections'><%= tags[i].tag_name %></option>
+								<% } %>
+								</optgroup>
+							</select>
+						</li>
+						<br />
+						<br />
+						<li>
+							<a href='/outfits' id='faveButton'>
+								<p><span class='glyphicon glyphicon-heart'></span> <strong>MAKE THIS AN OUTFIT!</strong></p>
+							</a>
+						</li>
+					</ol>
 				</div>
 			</div>
 			<div class='col-xs-1 cl-md-1'></div>

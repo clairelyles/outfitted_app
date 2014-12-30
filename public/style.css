@@ -1,8 +1,10 @@
 
+
 /* ------ Container Divs ------ */
 div {
-/*	border: 1px solid #000;*/
+	/*border: 1px solid #000;*/
 }
+
 
 @media (max-width: 600px) {
   .container {
@@ -20,7 +22,7 @@ div {
 
   .container-content {
 /*	padding-right: 50px;*/
-	padding-left: 10px;
+	padding: 10px;
 	margin-top: 0px;
 	}
 }
@@ -34,21 +36,21 @@ div {
 .container-main {
 	text-align: left;
 	background-color: #fff;
-	margin-top: 60px;
+/*	margin-top: 60px;*/
 	margin-left: 10%;
 	margin-right: 10%;
-	margin-bottom: 150px;
-	padding-bottom: 80px;
-	padding-top: 10px;
 }
 
 .container-content {
 /*	padding-right: 50px;*/
-	padding-left: 60px;
-	margin-top: 0px;
+	padding-top: 30px;
+	padding-left: 35px;
+	padding-right: 35px;
+	padding-bottom: 30px;
 }
 
 .page-header {
+	padding-top: 3px;
 	padding-left: 10%;
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -110,11 +112,11 @@ div {
 .nav>li>a {
 	padding-left: 0;
 	margin-left: 0;
-
 }
 
-.navbar-nav {
+nav.navbar.navbar-default {
 	text-align: center;
+	margin-bottom: 0px;
 }
 
 .nav-item {
@@ -147,6 +149,12 @@ li.nav-item a:hover {
 	border: 8px solid #000;
 }
 
+#shirtsize {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* ------------ My Closet ------------ */
 
 .carousel {
@@ -174,21 +182,12 @@ li.nav-item a:hover {
     background-image: none;
 }
 
-.favorite {
-	background: #FF0090;
-	border: 5px solid #000;
-	color: #000;
-	width: 13vw;
-	height: 10vh;
-	padding-bottom: 40px;
+.favorite-space {
+	padding-top: 50%; 
 }
 
-.favorite-space{
-	margin-top: 140px;
-}
-
-.form-control {
-	padding: 10px;
+.glyphicon-heart {
+	color: #FF0090;
 }
 
 
@@ -196,54 +195,66 @@ li.nav-item a:hover {
 
 
 .footer {
-
-	margin-top: 100px;
-	padding-left: 60px;
-	padding-top: 20px;
-	background-color: #fff;
-	padding-bottom: 100px;
+	padding-left: 77%;
+	padding-top: 15px;
+	background-color: #000;
+	padding-bottom: 3%;
 /*	position: fixed;*/
 }
 
-body {
-	font-family: 'Roboto';
-    font-weight: lighter;
-    background-image: url('http://www.tech-lovers.com/wp-content/uploads/2014/01/Leopard-Print-texture-pattern-Cheetah-Print-Leopard-Skin-Textures.jpg');
-	background-repeat: repeat-y repeat-x;
+#footer {
+	color: #fff;
 }
 
-p {
-	font-family: 'Roboto';
-	font-weight: lighter;
+body {
+	font-family: 'Karla';
+    background-image: url('http://www.tech-lovers.com/wp-content/uploads/2014/01/Leopard-Print-texture-pattern-Cheetah-Print-Leopard-Skin-Textures.jpg');
+	background-repeat: repeat-y repeat-x;
 }
 
 
 h1 {
 	color: #000;
 	font-size: 48px;
-	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Montserrat', sans-serif;*/
+	font-family: 'Montserrat', sans-serif;
 	margin: 0;
-	padding:0;
+/*	padding-bottom: 20px;*/
 }
 
 h2 {
 	color: #000;
 	font-size: 32px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: lighter;
+/*	font-family: 'Roboto', sans-serif;
+	font-weight: lighter;*/
+	font-family: 'Karla', sans-serif;
+/*	font-weight: lighter;*/
+	letter-spacing: 0.125em;
 }
 
 h3 {
 	color: #000;
-	font-size: 18px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: lighter;
+	font-size: 24px;
+	font-family: 'Karla', sans-serif;
+	letter-spacing: 0.125em;
 }
 
-h4 {
-	font-size: 24px;
+p {
 	color: #000;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Karla', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+
+/* ------------------- alerts ------------------- */
+
+.alert-info {
+	margin-top: 20px;
+	background-color: #fff;
+	border: 1px solid #000;
+	color: #000; 
+	width: 50%;
 }
 
 /* ------------------- button ------------------- */
@@ -257,9 +268,10 @@ h4 {
   padding-bottom: 10px;
   padding-left: 20px;
   margin: 5px;
+  border-radius: 0;
 } 
  
-.btn-primary:hover, 
+.btn-primary:hover,
 .btn-primary:focus, 
 .btn-primary:active, 
 .btn-primary.active, 
@@ -303,9 +315,19 @@ fieldset[disabled] .btn-primary.active {
   color: #000; 
   background-color: #fff;
   width: 13vw;
-  border-color: #000; 
+  border-color: #000;
+  padding: 5px;
+  border-radius: 0px;
+  -webkit-border-radius: 0;
+  -webkit-appearance: none;
+  padding-bottom: 0em;
 }
 
+/*select.selectpicker.form-control {
+	border-radius: 0px;
+	-webkit-appearance: none;
+}
+*/
 .btn-file {
     position: relative;
     overflow: hidden;
