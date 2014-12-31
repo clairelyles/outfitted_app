@@ -27,10 +27,12 @@ div {
 	}
 }
 
+
 .container {
 	margin-left: 10%;
 	margin-right: 10%;
 	padding: 0px;
+	position: relative;
 }
 
 .container-main {
@@ -39,6 +41,7 @@ div {
 /*	margin-top: 60px;*/
 	margin-left: 10%;
 	margin-right: 10%;
+	position: relative;
 }
 
 .container-content {
@@ -47,6 +50,16 @@ div {
 	padding-left: 35px;
 	padding-right: 35px;
 	padding-bottom: 30px;
+	position: relative;
+}
+
+#favorited {
+	display: none;
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 35%;
+    left: 10%;
 }
 
 .page-header {

@@ -201,30 +201,35 @@ app.get('/mycloset', function(req, res) {
 	var bottom = [3,4,5];
 
 	if (user) {
-		db.tag.findAll().then(function(tags){
-			db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay){
-				var allPieces = pieceDisplay.map(function(piece){
-					var outPiece = {};
-					outPiece.id = piece.id;
-					outPiece.userId = piece.userId;
-					outPiece.piecetypeId = piece.piecetypeId;
-					outPiece.image = (cloudinary.url('piece_' + piece.id + '.jpg',{
-						radius: 5,
-						crop: 'fill'
-					}));
-					return outPiece;
+		// if (req.body.selectTag != undefined) {
+			db.tag.findAll().then(function(tags){
+				db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay){
+					var allPieces = pieceDisplay.map(function(piece){
+						var outPiece = {};
+						outPiece.id = piece.id;
+						outPiece.userId = piece.userId;
+						outPiece.piecetypeId = piece.piecetypeId;
+						outPiece.image = (cloudinary.url('piece_' + piece.id + '.jpg',{
+							radius: 5,
+							crop: 'fill'
+						}));
+						return outPiece;
+					});
+
+					var topPieces = allPieces.filter(function(piece){
+						return top.indexOf(piece.piecetypeId) > -1;
+					})
+					var bottomPieces = allPieces.filter(function(piece){
+						return bottom.indexOf(piece.piecetypeId) > -1;
+					})
+					console.log(req.body.selectTag);
+					res.render('mycloset', {'topPieces':topPieces,'bottomPieces':bottomPieces,'tags':tags});
 				});
-
-				var topPieces = allPieces.filter(function(piece){
-					return top.indexOf(piece.piecetypeId) > -1;
-				})
-				var bottomPieces = allPieces.filter(function(piece){
-					return bottom.indexOf(piece.piecetypeId) > -1;
-				})
-
-				res.render('mycloset', {'topPieces':topPieces,'bottomPieces':bottomPieces,'tags':tags});
 			});
-		});
+		// } else {
+		// 	req.flash('info', 'Please select a descriptive tag for this outfit.');
+		// 	res.redirect('/mycloset');
+		// }
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
 		res.redirect('/');

@@ -18,10 +18,19 @@ $(function() {
 			type: 'POST',
 			url: '/outfits',
 			data: postData
-		}).done(function(data){
-			console.log(data);
-		});
+		}).success(function(data){
+			$('#favorited')
+				.fadeIn('slow', function(){
+					$('#favorited').show();
+				})
+				.fadeOut('slow', function(){
+					$('#favorited').hide();
+				})
+		}).error(function(){
+			alert('please select an outfit descriptor')
+		})
 	});
+
 
 	$('.polariod-inner').hover(function(){
 		$(this).children('.glyphicon-remove').fadeIn("slow", function(){
