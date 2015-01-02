@@ -171,12 +171,6 @@ app.post('/upload', function(req, res) {
 	var pieceType = req.body.selectpicker;
 	var user = req.getUser()
 
-	// if (req.files.piecePicture === undefined) {
-	// 	res.send('error caught');
-	// } else {
-	// 	res.redirect('/upload')
-	// }
-
 	// get it to populate with userId and 
 	if (pieceType && req.files.piecePicture != undefined) {
 		var imgInfo = req.files.piecePicture.path;
@@ -201,7 +195,6 @@ app.get('/mycloset', function(req, res) {
 	var bottom = [3,4,5];
 
 	if (user) {
-		// if (req.body.selectTag != undefined) {
 			db.tag.findAll().then(function(tags){
 				db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay){
 					var allPieces = pieceDisplay.map(function(piece){
@@ -222,14 +215,9 @@ app.get('/mycloset', function(req, res) {
 					var bottomPieces = allPieces.filter(function(piece){
 						return bottom.indexOf(piece.piecetypeId) > -1;
 					})
-					console.log(req.body.selectTag);
 					res.render('mycloset', {'topPieces':topPieces,'bottomPieces':bottomPieces,'tags':tags});
 				});
 			});
-		// } else {
-		// 	req.flash('info', 'Please select a descriptive tag for this outfit.');
-		// 	res.redirect('/mycloset');
-		// }
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
 		res.redirect('/');
@@ -247,7 +235,8 @@ app.get('/outfits', function(req, res){
 		if (user) {
 			db.outfit.findAll({
 				where:{userId:user.id},
-				include:[{model:db.piece},{model:db.tag}]
+				include:[{model:db.piece},{model:db.tag}],
+				order:'id DESC'
 			}).then(function(outfits){
 				res.render('outfits', {'outfits':outfits});
 			});
@@ -259,19 +248,20 @@ app.get('/outfits', function(req, res){
 
 app.post('/outfits', function(req, res){
 	var user = req.getUser();
+	// db.outfit.create({where:{'tagId':req.body.tagSelect,'userId':user.id}, order:'id ASC'}).then(function(createdOutfit){
 	db.outfit.create({'tagId':req.body.tagSelect,'userId':user.id}).then(function(createdOutfit){
     	db.look.create({'pieceId':req.body.topId,'outfitId':createdOutfit.id}).then(function(createdTops){
     		db.look.create({'pieceId':req.body.bottomId,'outfitId':createdOutfit.id}).then(function(createdBottoms){
     			db.tag.find({id:req.body.tagSelect}).then(function(tagName){
-	    			// console.log({'outfits':createdOutfit,'top':createdTops,'bottom':createdBottoms});
+	    			console.log({'outfits':createdOutfit,'top':createdTops,'bottom':createdBottoms});
 	    			var displayInfo = {
 	    				'outfits':createdOutfit,
 	    				'top':createdTops,
 	    				'bottom':createdBottoms,
 	    				'tagName':tagName
 	    			}
-	    			res.send({displayInfo:displayInfo});
-	    			// res.send('outfits', {'displayInfo':displayInfo});
+	    			//res.send({displayInfo:displayInfo});
+	    			res.send('outfits', {'displayInfo':displayInfo});
     			});
     		});      
 	    });

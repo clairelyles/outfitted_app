@@ -74,6 +74,7 @@ div {
 .polariod-outer {
 	background: #fff;
 	width: 25%;
+	height: 60vh;
 	margin: 10px;
 	padding-top: 10px;
 	padding-bottom: 8px;
@@ -87,6 +88,7 @@ div {
 	-webkit-box-shadow: inset 0 0 10px rgba(204,204,204, 0.8);
 	box-shadow: inset 0 0 10px rgba(204,204,204, 0.8);
 	border: 1px solid #ccc;
+	height: 50vh;
 }
 
 .polariod-inner .glyphicon-remove {
