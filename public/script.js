@@ -27,9 +27,9 @@ $(function() {
 					$('#favorited').hide();
 				})
 			});
-		// }).error(function(){
-		// 	alert('please select an outfit descriptor')
-		// })
+		}).error(function(){
+			alert('please select an outfit descriptor')
+		})
 	});
 
 
