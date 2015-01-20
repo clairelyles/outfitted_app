@@ -51,7 +51,6 @@ app.get('/signup', function(req,res) {
 })
 
 app.post('/signup', function(req, res) {
-	// res.send(req.body);
 	db.user.findOrCreate({
 		where:{
 			'email':req.body.email
@@ -71,7 +70,6 @@ app.post('/signup', function(req, res) {
 	}).catch(function(error) {
 		if (error && Array.isArray(error.errors)) {
 			// must be error.errors b/c the error obj contains name and message keys in addition to errors
-			// res.send({error:error})
 			error.errors.forEach(function(errorItem) {
 				// if error, display error message
 				req.flash('danger', errorItem.message)
@@ -85,10 +83,6 @@ app.post('/signup', function(req, res) {
 		}
 	});
 });
-
-// app.get('/testingcss', function(req, res){
-// 	res.render('testingcss');
-// });
 
 
 /* ------------------- Login Post ------------------- */
@@ -198,16 +192,16 @@ app.get('/mycloset', function(req, res) {
 			db.tag.findAll().then(function(tags){
 				db.piece.findAll({where:{'userId':user.id}}).then(function(pieceDisplay){
 					var allPieces = pieceDisplay.map(function(piece){
-						var outPiece = {};
-						outPiece.id = piece.id;
-						outPiece.userId = piece.userId;
-						outPiece.piecetypeId = piece.piecetypeId;
-						outPiece.image = (cloudinary.url('piece_' + piece.id + '.jpg',{
-							radius: 5,
-							crop: 'fill'
-						}));
-						return outPiece;
-					});
+					var outPiece = {};
+					outPiece.id = piece.id;
+					outPiece.userId = piece.userId;
+					outPiece.piecetypeId = piece.piecetypeId;
+					outPiece.image = (cloudinary.url('piece_' + piece.id + '.jpg',{
+						radius: 5,
+						crop: 'fill'
+					}));
+					return outPiece;
+				});
 
 					var topPieces = allPieces.filter(function(piece){
 						return top.indexOf(piece.piecetypeId) > -1;
