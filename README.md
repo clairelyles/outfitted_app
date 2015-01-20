@@ -6,11 +6,11 @@ Get a head start with OutFitted—your virtual closet for creating mood-outfit c
 # How do I use OutFitted?
 Create and utilize your virtual closet in just 3 simple steps.
 
-  1) Take pictures of each item (e.g. shirt, pants, skirt, etc.) against a solid background.
+* 1) Take pictures of each item (e.g. shirt, pants, skirt, etc.) against a solid background.
 
-  2) Create an accounton OutFitted and begin uploading your images.
+* 2) Create an accounton OutFitted and begin uploading your images.
 
-  3) Enter 'My Closet' to view, select and tag mood-outfit combinations to make getting ready in the morning as efficient, and fun as possible.
+* 3) Enter 'My Closet' to view, select and tag mood-outfit combinations to make getting ready in the morning as efficient, and fun as possible.
 
 Because, afterall, we all know the unpredictability of the weather, and more importantly our mood, dictate what we wear on the daily.
 
