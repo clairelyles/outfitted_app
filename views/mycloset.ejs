@@ -15,7 +15,7 @@
 						<div class='carousel-inner'>
 					    <% for (i = 0; i < topPieces.length; i++) { %>
 						    <div class='item<%= i==0 ? ' active' : '' %>'>
-						    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= topPieces[i].id %>' data-pieceId='<%= topPieces[i].id %>' data-piecetypeId='<%= topPieces[i].piecetypeId %>' data-userId='<%= topPieces[i].userId %>'>
+						    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= topPieces[i].id %>' data-pieceId='<%= topPieces[i].id %>' data-piecetypeId='<%= topPieces[i].piecetypeId %>' data-userId='<%= topPieces[i].userId %>' class='img-responsive'>
 						    </div>
 						<% } %>
 						</div>
@@ -34,7 +34,7 @@
 						<div class='carousel-inner'>
 					    <% for (i = 0; i < bottomPieces.length; i++) { %>
 						    <div class='item<%= i==0 ? ' active' : '' %>'>
-						    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= bottomPieces[i].id %>' data-pieceId='<%= bottomPieces[i].id %>' data-piecetypeId='<%= bottomPieces[i].piecetypeId %>' data-userId='<%= bottomPieces[i].userId %>'>
+						    	<img src='http://res.cloudinary.com/drxybow0v/image/upload/c_fill,h_0.5,r_5,w_0.5/piece_<%= bottomPieces[i].id %>' data-pieceId='<%= bottomPieces[i].id %>' data-piecetypeId='<%= bottomPieces[i].piecetypeId %>' data-userId='<%= bottomPieces[i].userId %>' class='img-responsive'>
 						    </div>
 					    <% } %>
 					    </div>

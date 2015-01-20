@@ -121,7 +121,7 @@ app.post('/login', function(req, res) {
 			req.flash('warning', 'Unknown User, please try again.')
 			res.redirect('/');
 			}
-		}		
+		}
 	});
 });
 
@@ -171,7 +171,7 @@ app.post('/upload', function(req, res) {
 	var pieceType = req.body.selectpicker;
 	var user = req.getUser()
 
-	// get it to populate with userId and 
+	// get it to populate with userId and
 	if (pieceType && req.files.piecePicture != undefined) {
 		var imgInfo = req.files.piecePicture.path;
 		db.piece.create({'piecetypeId':pieceType, 'userId':user.id}).then(function(pieceData) {
@@ -253,7 +253,7 @@ app.post('/outfits', function(req, res){
     	db.look.create({'pieceId':req.body.topId,'outfitId':createdOutfit.id}).then(function(createdTops){
     		db.look.create({'pieceId':req.body.bottomId,'outfitId':createdOutfit.id}).then(function(createdBottoms){
     			db.tag.find({id:req.body.tagSelect}).then(function(tagName){
-	    			console.log({'outfits':createdOutfit,'top':createdTops,'bottom':createdBottoms});
+	    			//console.log({'outfits':createdOutfit,'top':createdTops,'bottom':createdBottoms});
 	    			var displayInfo = {
 	    				'outfits':createdOutfit,
 	    				'top':createdTops,
@@ -263,7 +263,7 @@ app.post('/outfits', function(req, res){
 	    			//res.send({displayInfo:displayInfo});
 	    			res.send('outfits', {'displayInfo':displayInfo});
     			});
-    		});      
+    		});
 	    });
 	});
 });
