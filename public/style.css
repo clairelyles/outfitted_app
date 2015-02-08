@@ -375,6 +375,7 @@ fieldset[disabled] .btn-primary.active {
 /* ------------------- Links ------------------- */
 a:link {
     color: #000;
+    text-decoration: bold;
 }
 
 a:hover {
