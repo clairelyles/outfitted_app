@@ -33,6 +33,11 @@ app.get('/testing', function(req, res) {
 	res.render('responsive');
 });
 
+/* ------------------- Login_Signup Page ------------------- */
+app.get('/login_signup', function(req, res) {
+	res.render('login_signup');
+});
+
 /* ---------- Applies flash msg to every * page ---------- */
 app.get('*', function(req, res, next) {
 
@@ -76,7 +81,7 @@ app.post('/signup', function(req, res) {
 			error.errors.forEach(function(errorItem) {
 				// if error, display error message
 				req.flash('danger', errorItem.message)
-							res.redirect('/');
+							res.redirect('/login_signup');
 
 			});
 		} else {
@@ -106,17 +111,17 @@ app.post('/login', function(req, res) {
 				res.redirect('landing');
 			} else {
 				req.flash('warning', 'Invalid password, please try again.');
-				res.redirect('/');
+				res.redirect('/login_signup');
 			};
 		});
 	} else {
 		req.session.count ? req.session.count = req.session.count +1 : req.session.count = 1;
 		if (req.session.count > 2) {
 			req.flash('warning', 'Too many incorrect log-in attempts. Please create an account')
-			res.redirect('/');
+			res.redirect('/login_signup');
 		} else {
 			req.flash('warning', 'Unknown User, please try again.')
-			res.redirect('/');
+			res.redirect('/login_signup');
 			};
 		};
 	});
@@ -141,7 +146,7 @@ app.get('/landing', function(req, res) {
 		});
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('/');
+		res.redirect('/login_signup');
 	};
 });
 
