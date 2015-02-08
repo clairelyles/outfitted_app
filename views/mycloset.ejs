@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-<div class='container-content'>	
+<div class='container-content'>
 	<h2>MY CLOSET</h2>
 	<% include partials/alerts %>
 	<div class='contianer'>
@@ -9,6 +9,7 @@
 	</div>
 		<div class='row'>
 			<div class='col-xs-8 cl-md-8'>
+			<% if (topPieces === null) { %>
 				<!-- BEGIN TOP CAROUSEL -->
 				<div class='piece-container'>
 					<div id='top-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
@@ -25,7 +26,7 @@
 						<a class='right carousel-control' href='#top-piece-carousel' role='button' data-slide='next'>
 							<span class='glyphicon glyphicon-chevron-right'></span>
 					    </a>
-					</div> 
+					</div>
 				</div>
 				<!-- END OF TOP CAROUSEL -->
 				<!-- BEGIN BOTTOM CAROUSEL -->
@@ -44,9 +45,15 @@
 					    <a class='right carousel-control' href='#bottom-piece-carousel' role='button' data-slide='next'>
 					    	<span class='glyphicon glyphicon-chevron-right'></span>
 					    </a>
-					</div> 
+					</div>
 				</div>
 				<!-- END OF BOTTOM CAROUSEL -->
+			<% } else { %>
+				<div class='text-center'>
+					<img src='/uploadfirst.jpg'>
+					<h2><strong>UPLOAD</strong> ITEMS TO VIEW YOUR CLOSET.</h2>
+				</div>
+			<% } %>
 			</div>
 			<div class='col-xs-3 col-md-3'>
 				<div class='favorite-space'>
