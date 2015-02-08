@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>OutFitted</title>
 	<link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
 	<script src='//code.jquery.com/jquery-1.11.0.min.js'></script>
 	<script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
@@ -21,11 +22,11 @@
   	color: #000;
   	font-size: 48px;
   	font-family: 'Montserrat', sans-serif;
-  	margin: 0;
+  	padding-bottom: .1em;
   }
 
   h2 {
-  	color: #000;
+  	color: #fff;
   	font-size: 32px;
   	font-family: 'Karla', sans-serif;
   	letter-spacing: 0.125em;
@@ -46,26 +47,24 @@
   }
 
 	.signup-login {
-		text-align: left;
-		background-color: #ffffff;
-		margin-top: 100px;
-		padding-bottom: 30px;
-		padding-top: 10px;
-		padding-left: 5px;
+		background-color: #000;
+    text-align: left;
+    color:#fff;
+    padding-top: 5.5%;
+    padding-bottom: 100%;
+    display: inline-block;
+    width: 100%;
 	}
 
-	.signup {
-		margin-top: 15px;
-		margin-bottom: 45px;
-		border-right: 1px solid #000;
-		padding-right: 20px;
-	}
+  div.signup-login.text-center {
+    display: inline-block;
+  }
+  .content-wrapper {
+    background-color: #fff;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
 
-	.login {
-		margin-top: 15px;
-		margin-bottom: 45px;
-		padding-left: 20px;
-	}
 
   /* --- BUTTONS --- */
   .btn-primary {
@@ -141,13 +140,12 @@
   	margin-bottom: 6px;
     color: #000;
     background-color: #fff;
-    width: 17vw;
+    /*width: 30%;*/
     border-color: #000;
     padding: 5px;
     border-radius: 0px;
     -webkit-border-radius: 0;
     -webkit-appearance: none;
-    padding-bottom: 0em;
   }
 
   .sr-only {
@@ -168,9 +166,54 @@
   	font-weight: 700;
   }
 
-  .header {
-  	padding-left: 15px;
+  .content-wrapper {
+    background-color: #fff;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
+
+  .alert-info {
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+  }
+  .alert-warning {
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+  }
+  .alert-danger {
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+  }
+
+  @media (min-width: 600px) {
+    body {
+      margin-top: 10%;
+      margin-bottom: 10%;
+    }
+    h1 {
+    font-size: 52px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .signup-login {
+      display: block;
+      padding-bottom: 5.5%;
+    }
+  }
+
 
 </style>
 
