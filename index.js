@@ -28,6 +28,11 @@ app.use(function(req, res, next){
 });
 
 
+/* ------------------- Testing Responsiveness Page ------------------- */
+app.get('/testing', function(req, res) {
+	res.render('responsive');
+});
+
 /* ---------- Applies flash msg to every * page ---------- */
 app.get('*', function(req, res, next) {
 
