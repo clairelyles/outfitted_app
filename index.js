@@ -160,6 +160,7 @@ app.post('/upload', function(req, res) {
 
 	if (pieceType && req.files.piecePicture != undefined) {
 		var imgInfo = req.files.piecePicture.path;
+
 		db.piece.create({'piecetypeId':pieceType, 'userId':user.id}).then(function(pieceData) {
 			cloudinary.uploader.upload(imgInfo, function(result) {
 				 req.flash('info', 'A new item has been added to your closet.')
