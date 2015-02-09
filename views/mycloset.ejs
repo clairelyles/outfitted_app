@@ -9,7 +9,7 @@
 	</div>
 		<div class='row'>
 			<div class='col-xs-8 cl-md-8'>
-			<% if (topPieces === null) { %>
+			<% if (typeof topPieces == 'undefined' || typeof bottomPieces == 'undefined' ) { %>
 				<!-- BEGIN TOP CAROUSEL -->
 				<div class='piece-container'>
 					<div id='top-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>

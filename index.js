@@ -205,6 +205,7 @@ app.get('/mycloset', function(req, res) {
 				return outPiece;
 			});
 
+				var check_upload = allPieces
 				var topPieces = allPieces.filter(function(piece){
 					return top.indexOf(piece.piecetypeId) > -1;
 				})
