@@ -28,15 +28,6 @@ app.use(function(req, res, next){
 });
 
 
-/* ------------------- Testing Responsiveness Page ------------------- */
-app.get('/testing', function(req, res) {
-	res.render('responsive');
-});
-
-/* ------------------- Login_Signup Page ------------------- */
-app.get('/login_signup', function(req, res) {
-	res.render('login_signup');
-});
 
 /* ---------- Applies flash msg to every * page ---------- */
 app.get('*', function(req, res, next) {
@@ -46,6 +37,10 @@ app.get('*', function(req, res, next) {
 	next();
 });
 
+/* ------------------- Login_Signup Page ------------------- */
+app.get('/login_signup', function(req, res) {
+	res.render('login_signup');
+});
 
 /* ------------------- Index Page ------------------- */
 app.get('/', function(req, res) {

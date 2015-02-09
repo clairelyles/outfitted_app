@@ -1,13 +1,16 @@
 <% include partials/header %>
 
 	<div class='container-content'>
+		<!-- Header -->
 		<h2>MY OUTFITS</h2>
+		<!-- Display Upload Warning Img -->
 		<% if (typeof outfits == 'undefined' && outfits.length > 0) { %>
 			<div class='text-center'>
 				<img src='/uploadfirst.jpg'>
 				<h2><strong>UPLOAD</strong> ITEMS TO VIEW YOUR OUTFITS.</h2>
 			</div>
 		<% } else { %>
+		<!-- Display Outfit Images -->
 			<div class='row'>
 				<% for (var i = 0; i < outfits.length; i++){ %>
 					<div class='col-xs-4 col-md-4 polariod-outer text-center'>

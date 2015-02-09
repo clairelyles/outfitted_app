@@ -1,6 +1,7 @@
 <% include partials/header %>
 
 <div class='container-content'>
+<!-- Header -->
 	<h2>MY CLOSET</h2>
 	<% include partials/alerts %>
 	<div class='contianer'>
@@ -49,18 +50,21 @@
 				</div>
 				<!-- END OF BOTTOM CAROUSEL -->
 			<% } else { %>
+			<!-- Upload First Img -->
 				<div class='text-center'>
 					<img src='/uploadfirst.jpg'>
 					<h2><strong>UPLOAD</strong> ITEMS TO VIEW YOUR CLOSET.</h2>
 				</div>
 			<% } %>
 			</div>
+			<!-- My Closet Instructions -->
 			<div class='col-xs-3 col-md-3'>
 				<div class='favorite-space'>
 					<ol>
 						<li><p>Click through items in your closet until you find a match.</p></li>
 						<br />
 						<br />
+						<!-- Outfit Tags -->
 						<li><p>How would you describe this outfit?</p>
 							<select class='selectTag form-control' data-style='btn-primary' name='selectTag'>
 								<option selected disabled>Choose here</option>
@@ -73,6 +77,7 @@
 						<br />
 						<br />
 						<li>
+						<!-- Ajax Outfit Button -->
 							<a href='/outfits' id='faveButton'>
 								<p><span class='glyphicon glyphicon-heart'></span> <strong>MAKE THIS AN OUTFIT!</strong></p>
 							</a>
@@ -84,6 +89,5 @@
 		</div>
 	</div>
 </div>
-
 
 <% include partials/footer %>
