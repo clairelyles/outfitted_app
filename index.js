@@ -87,7 +87,7 @@ app.post('/signup', function(req, res) {
 		} else {
 			// for unknown errors
 			res.flash('danger', 'Unknown error');
-			res.redirect('/');
+			res.redirect('/login_signup');
 		};
 	});
 });
@@ -159,7 +159,7 @@ app.get('/upload', function(req, res) {
 		})
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('/');
+		res.redirect('/login_signup');
 	};
 });
 
@@ -216,7 +216,7 @@ app.get('/mycloset', function(req, res) {
 		});
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('/');
+		res.redirect('/login_signup');
 	};
 });
 
@@ -234,7 +234,7 @@ app.get('/outfits', function(req, res){
 			});
 		} else {
 			req.flash('warning', 'Please log-in before continuing.');
-			res.redirect('/');
+			res.redirect('/login_signup');
 		}
 });
 
@@ -277,7 +277,7 @@ app.get('/about', function(req,res){
 		res.render('about');
 	} else {
 		req.flash('warning', 'Please log-in before continuing.');
-		res.redirect('/');
+		res.redirect('/login_signup');
 	}
 })
 
@@ -286,7 +286,7 @@ app.get('/about', function(req,res){
 app.get('/logout', function(req, res) {
 	delete req.session.user;
 	req.flash('info', 'You have been logged out.');
-	res.redirect('/');
+	res.redirect('/login_signup');
 })
 
 
