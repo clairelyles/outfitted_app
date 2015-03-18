@@ -11,6 +11,12 @@
 		<div class='row'>
 			<div class='col-xs-8 cl-md-8'>
 			<% if (typeof topPieces == null || typeof bottomPieces == null ) { %>
+				<!-- Upload First Img -->
+				<div class='text-center'>
+					<img src='/uploadfirst.jpg'>
+					<h2><strong>UPLOAD</strong> ITEMS TO VIEW YOUR CLOSET.</h2>
+				</div>
+			<% } else { %>
 				<!-- BEGIN TOP CAROUSEL -->
 				<div class='piece-container'>
 					<div id='top-piece-carousel' class='carousel slide' data-ride='carousel' data-interval='false'>
@@ -49,12 +55,6 @@
 					</div>
 				</div>
 				<!-- END OF BOTTOM CAROUSEL -->
-			<% } else { %>
-			<!-- Upload First Img -->
-				<div class='text-center'>
-					<img src='/uploadfirst.jpg'>
-					<h2><strong>UPLOAD</strong> ITEMS TO VIEW YOUR CLOSET.</h2>
-				</div>
 			<% } %>
 			</div>
 			<!-- My Closet Instructions -->
